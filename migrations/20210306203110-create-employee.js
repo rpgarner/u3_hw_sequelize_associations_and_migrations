@@ -17,6 +17,14 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
+      businessId: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'businesses',
+          key: 'id'
+      }
+    },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

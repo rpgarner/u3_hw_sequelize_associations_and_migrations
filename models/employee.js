@@ -8,14 +8,22 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Employee.belongsTo(models.Business, {foreignKey: 'businessId' })
     }
   }
   Employee.init(
     {
       firstName: DataTypes.STRING,
       lastName: DataTypes.STRING,
-      email: DataTypes.STRING
+      email: DataTypes.STRING,
+      businessId: {
+        type: DataTypes.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'businesses',
+          key: 'id'
+        }
+      }
     },
     {
       sequelize,
